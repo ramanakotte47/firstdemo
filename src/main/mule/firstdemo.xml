@@ -43,5 +43,21 @@ output application/json
 	</flow>
 	<flow name="secon_sub_flow" doc:id="b51d8c0b-8038-40e5-a632-de6e9c044681" >
 		<set-payload value='" first demo application tested"' doc:name="Set Payload" doc:id="595eeebe-0f37-4d2a-b2fd-02d0a2e42935" />
+		<choice doc:name="Choice" doc:id="a58efaa2-85be-4fd6-93b5-632dc3a2095b" >
+			<when expression="#[payload.size &gt; 0]">
+				<logger level="INFO" doc:name="Logger" doc:id="652f97e7-4185-493e-a642-4a029825383d" message="--- true condition---"/>
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="Logger" doc:id="aa6ecb6a-7407-4cf0-8edd-72261ae129a1" message="---- false condition--"/>
+			</otherwise>
+		</choice>
+		<ee:transform doc:name="Transform Message" doc:id="238fc256-de4d-4a76-a783-0bac6eb26bce" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+" transform message added"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	</flow>
 </mule>
