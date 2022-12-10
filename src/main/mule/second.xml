@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="secondFlow" doc:id="13d7148b-caf6-4e9f-8098-790b73b85c5d" >
+		<http:listener doc:name="Listener" doc:id="55fc987d-c620-4b78-aef0-b1c96e00229e" config-ref="HTTP_Listener_config" path="/seconds"/>
+		<logger level="INFO" doc:name="Logger" doc:id="e9ebdec2-55a0-4e5f-9419-c1f3cd750c0d" />
+		<flow-ref doc:name="Flow Reference" doc:id="2b1d0ea7-eb76-4d9a-94e2-03b4731ca7d6" name="secondFlow1"/>
+		<set-payload value="----second application ---" doc:name="Set Payload" doc:id="ae928c37-1f70-4b58-8a3c-e768fdd9de3b" />
+		<logger level="INFO" doc:name="Logger" doc:id="3979e421-e4cf-4828-bb05-1a40c6521a46" message="--- end flow--"/>
+	</flow>
+	<flow name="secondFlow1" doc:id="0a1f3c55-283c-4682-9ecc-46b82139457e" >
+		<ee:transform doc:name="Transform Message" doc:id="7de10873-c3af-45c5-9dbc-23ca8f6f75a9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"code": 400,
+	"message": "bad request"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
