@@ -39,5 +39,9 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<flow-ref doc:name="Flow Reference" doc:id="f4bb81e3-180d-459d-8309-06119576b57c" name="secon_sub_flow"/>
+	</flow>
+	<flow name="secon_sub_flow" doc:id="b51d8c0b-8038-40e5-a632-de6e9c044681" >
+		<set-payload value='" first demo application tested"' doc:name="Set Payload" doc:id="595eeebe-0f37-4d2a-b2fd-02d0a2e42935" />
 	</flow>
 </mule>
