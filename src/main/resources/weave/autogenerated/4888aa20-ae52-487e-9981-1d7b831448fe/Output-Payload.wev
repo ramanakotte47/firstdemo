@@ -1,0 +1,8 @@
+%dw 2.0
+
+type auto_4888aa20_ae52_487e_9981_1d7b831448fe_Output_Payload = {|
+  code: String, 
+  message: String, 
+  description: String
+|}
+

@@ -23,6 +23,21 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<flow-ref doc:name="Flow Reference" doc:id="3376222d-479d-416a-b82d-4f41980d9e69" name="sub-firstdemoFlow1"/>
 		<logger level="INFO" doc:name="Logger" doc:id="e86d047a-4e99-421e-8faa-6ceb784a183f" message="--- end of the flow---"/>
+	</flow>
+	<flow name="sub-firstdemoFlow1" doc:id="4888aa20-ae52-487e-9981-1d7b831448fe" >
+		<logger level="INFO" doc:name="Logger" doc:id="d4dded76-c75b-44c6-a210-8cd43971914c" message="--- calling subflow--"/>
+		<ee:transform doc:name="Transform Message" doc:id="b31b46c8-8e0a-472e-b959-03d957858dad" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": "calling subflow",
+	"description": "calling sub flow"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	</flow>
 </mule>
